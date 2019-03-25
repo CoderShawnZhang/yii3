@@ -1,0 +1,27 @@
+{
+    "name": "mac/yii3",
+    "authors": [
+        {
+            "name": "张洪波",
+            "email": "zhanghongbo@anlewo.com"
+        }
+    ],
+    "require": {},
+    "config": {
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.laravel-china.org"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        {"packagist": false}
+    ]
+}
