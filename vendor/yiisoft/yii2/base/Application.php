@@ -7,26 +7,54 @@
  */
 namespace yii\base;
 
+use Yii;
+
 abstract class Application extends Module
 {
     abstract public function handleRequest($request);
 
+    public $loadedModules = [];
+
+    public $controllerNamespace = 'app\\controllers';
+
+    public $charset = 'UTF-8';
+
+    public $requestedParams;//存放 请求action的参数
+
+    public $requestedAction;
+
+    public $requestedRoute;
 
     public function __construct($config = [])
     {
+        Yii::$app = $this;
+
         $this->preInit($config);
         parent::__construct($config);
     }
 
     public function run()
     {
+
         $response = $this->handleRequest($this->getRequest());
+        $response->send();
     }
 
     public function getRequest()
     {
         return $this->get('request');
     }
+
+    public function getResponse()
+    {
+        return $this->get('response');
+    }
+
+    public function getUrlManager()
+    {
+        return $this->get('urlManager');
+    }
+
 
     /**
      * 初始化准备将自定义配置的config组件与yii内部核心定义的组件写入容器
@@ -49,7 +77,7 @@ abstract class Application extends Module
     public function coreComponents()
     {
         return [
-
+            'urlManager' => ['class' => 'yii\web\UrlManager'],
         ];
     }
 }

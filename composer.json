@@ -7,6 +7,9 @@
         }
     ],
     "require": {},
+    "autoload":{
+        "par-4": {"yii\\":""}
+    },
     "config": {
         "process-timeout": 1800,
         "fxp-asset": {
